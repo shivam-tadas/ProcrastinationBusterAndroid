@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="16dp"
+    android:background="#f9f9f9">
+
+    <!-- Back button -->
+    <TextView
+        android:id="@+id/backButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="← Back"
+        android:textSize="16sp"
+        android:textColor="#007FFF"
+        android:layout_gravity="start"
+        android:layout_marginBottom="20dp"
+        android:padding="10dp"
+        android:clickable="true"
+        android:focusable="true" />
+
+    <!-- Hello text -->
+    <TextView
+        android:id="@+id/helloText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello."
+        android:textSize="32sp"
+        android:textColor="#000000"
+        android:layout_marginBottom="40dp"
+        android:gravity="center" />
+
+    <!-- Email input field -->
+    <EditText
+        android:id="@+id/emailInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter email"
+        android:inputType="textEmailAddress"
+        android:padding="10dp"
+        android:background="@drawable/rounded_edit_text"
+        android:layout_marginBottom="20dp"
+        android:textColor="#000000"
+        android:textColorHint="#888888" />
+
+    <!-- Username input field -->
+    <EditText
+        android:id="@+id/usernameInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Choose username"
+        android:inputType="text"
+        android:padding="10dp"
+        android:background="@drawable/rounded_edit_text"
+        android:layout_marginBottom="20dp"
+        android:textColor="#000000"
+        android:textColorHint="#888888" />
+
+    <!-- Password input field -->
+    <EditText
+        android:id="@+id/passwordInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Create password"
+        android:inputType="textPassword"
+        android:padding="10dp"
+        android:background="@drawable/rounded_edit_text"
+        android:layout_marginBottom="20dp"
+        android:textColor="#000000"
+        android:textColorHint="#888888" />
+
+    <!-- Confirm password input field -->
+    <EditText
+        android:id="@+id/confirmPasswordInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Confirm password"
+        android:inputType="textPassword"
+        android:padding="10dp"
+        android:background="@drawable/rounded_edit_text"
+        android:layout_marginBottom="30dp"
+        android:textColor="#000000"
+        android:textColorHint="#888888" />
+
+    <!-- Sign Up button -->
+    <Button
+        android:id="@+id/signUpButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SIGN UP"
+        android:textSize="16sp"
+        android:backgroundTint="#ffffff"
+        android:textColor="#000000"
+        android:padding="10dp"
+        android:background="@drawable/outline_button"
+        android:layout_marginBottom="20dp" />
+
+</LinearLayout>
