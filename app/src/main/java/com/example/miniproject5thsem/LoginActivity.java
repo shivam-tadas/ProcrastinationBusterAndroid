@@ -2,11 +2,14 @@ package com.example.miniproject5thsem;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class LoginActivity extends AppCompatActivity {
@@ -31,6 +34,8 @@ public class LoginActivity extends AppCompatActivity {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                startActivity(intent);
                 finish();
             }
         });
@@ -48,9 +53,9 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(LoginActivity.this, "Logging in...", Toast.LENGTH_SHORT).show();
 
                     // Example: If successful, navigate to the main app screen (MainActivity or another screen)
-                    // Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                    // startActivity(intent);
-                    // finish();  // Close this activity so the user can't come back to the login screen
+                    Intent intent = new Intent(LoginActivity.this, HomepageActivity.class);
+                    startActivity(intent);
+                    finish();  // Close this activity so the user can't come back to the login screen
                 }
             }
         });
@@ -58,12 +63,18 @@ public class LoginActivity extends AppCompatActivity {
         forgotPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Navigate to a "Forgot Password" activity or show a password recovery dialog
-                Toast.makeText(LoginActivity.this, "Forgot Password clicked!", Toast.LENGTH_SHORT).show();
-
                 Intent intent = new Intent(LoginActivity.this, ForgotPasswordActivity.class);
                 startActivity(intent);
             }
         });
+
+        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
+            @Override
+            public void handleOnBackPressed() {
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        };
     }
 }

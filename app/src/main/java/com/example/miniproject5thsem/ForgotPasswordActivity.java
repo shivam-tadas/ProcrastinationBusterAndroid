@@ -43,6 +43,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
                     // Logic to send reset code to email (this is where you'd handle sending an email)
                     Intent intent = new Intent(ForgotPasswordActivity.this, ResetCodeActivity.class);
                     startActivity(intent);
+                    finish();
                 }
             }
         });

@@ -29,9 +29,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Add logic for the login button here (e.g., go to login screen)
-                Toast.makeText(MainActivity.this, "Log In clicked!", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(MainActivity.this, LoginActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -39,9 +39,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Add logic for the signup button here (e.g., go to signup screen)
-                Toast.makeText(MainActivity.this, "Sign Up clicked!", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(MainActivity.this, SignupActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
     private void showHelpDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
         builder.setTitle("Help");

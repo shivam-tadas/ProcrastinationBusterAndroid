@@ -1,5 +1,6 @@
 package com.example.miniproject5thsem; // Change to your package name
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -41,7 +42,8 @@ public class HomepageActivity extends AppCompatActivity {
         menuButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Handle menu button click
+                Intent intent = new Intent(HomepageActivity.this, MenuActivity.class);
+                startActivity(intent);
             }
         });
 

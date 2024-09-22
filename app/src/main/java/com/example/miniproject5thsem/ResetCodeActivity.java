@@ -67,9 +67,7 @@ public class ResetCodeActivity extends AppCompatActivity {
                 // For example, you could call an API to reset the password
 
                 Toast.makeText(ResetCodeActivity.this, "Password reset successfully", Toast.LENGTH_SHORT).show();
-                 Intent intent = new Intent(ResetCodeActivity.this, LoginActivity.class);
-                 startActivity(intent);
-                // finish();
+                finish();   // Go back to the login screen
             }
         });
 

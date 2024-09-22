@@ -7,6 +7,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class SignupActivity extends AppCompatActivity {
@@ -33,6 +35,8 @@ public class SignupActivity extends AppCompatActivity {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(SignupActivity.this, MainActivity.class);
+                startActivity(intent);
                 finish();
             }
         });
@@ -54,11 +58,20 @@ public class SignupActivity extends AppCompatActivity {
                     // For now, display a success message. Add actual registration logic here.
                     Toast.makeText(SignupActivity.this, "Signing up...", Toast.LENGTH_SHORT).show();
 
-                    // Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
-                    // startActivity(intent);
-                    // finish();
+                    Intent intent = new Intent(SignupActivity.this, HomepageActivity.class);
+                    startActivity(intent);
+                    finish();
                 }
             }
         });
+
+        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
+            @Override
+            public void handleOnBackPressed() {
+                Intent intent = new Intent(SignupActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        };
     }
 }
