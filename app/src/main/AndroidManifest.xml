@@ -25,6 +25,11 @@
         <activity android:name=".SignupActivity" />
         <activity android:name=".ForgotPasswordActivity" />
         <activity android:name=".ResetCodeActivity" />
+        <activity android:name=".HomepageActivity" />
+        <activity android:name=".ProfileActivity" />
+        <activity android:name=".HistoryActivity" />
+        <activity android:name=".MenuActivity" />
+        <activity android:name=".MoodTrackerActivity" />
     </application>
 
 </manifest>
