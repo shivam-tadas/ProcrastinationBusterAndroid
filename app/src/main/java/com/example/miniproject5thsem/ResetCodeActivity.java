@@ -4,9 +4,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.content.Intent;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -67,10 +67,8 @@ public class ResetCodeActivity extends AppCompatActivity {
                 // For example, you could call an API to reset the password
 
                 Toast.makeText(ResetCodeActivity.this, "Password reset successfully", Toast.LENGTH_SHORT).show();
-
-                // Optionally, after resetting the password, go back to login screen
-                // Intent intent = new Intent(ResetCodeActivity.this, LoginActivity.class);
-                // startActivity(intent);
+                 Intent intent = new Intent(ResetCodeActivity.this, LoginActivity.class);
+                 startActivity(intent);
                 // finish();
             }
         });
