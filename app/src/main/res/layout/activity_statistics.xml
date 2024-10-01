@@ -26,63 +26,30 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:text="     Profile"
+            android:text="Statistics"
             android:textSize="30sp"
             android:textColor="#000000" />
         </LinearLayout>
-    <View
-        android:layout_width="400dp"
-        android:layout_height="1dp"
-        android:layout_marginTop="3dp"
-        android:layout_marginBottom="3dp"
-        android:background="@android:color/black" />
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/levelText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:paddingBottom="16dp">
-        <ImageView
-            android:id="@+id/avatarImage"
-            android:layout_width="130dp"
-            android:layout_height="130dp"
-            android:layout_gravity="center_vertical"
-            android:layout_marginTop="16dp"
-            android:contentDescription="User avatar"
-            android:src="@drawable/user" />
+        android:text="Level: 2"
+        android:textColor="#000000"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="16dp"
+        android:textSize="18dp" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <TextView
-                android:id="@+id/levelText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Level 2"
-                android:textColor="#000000"
-                android:layout_marginStart="166dp"
-                android:textSize="16sp" />
-
-            <TextView
-                android:id="@+id/expText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="EXP 421"
-                android:layout_marginStart="166dp"
-                android:layout_marginTop="10dp"
-                android:textSize="14sp"
-                android:textColor="#000000" />
-        </LinearLayout>
-    </LinearLayout>
-    <View
-        android:layout_width="400dp"
-        android:layout_height="1dp"
-        android:layout_marginTop="3dp"
-        android:layout_marginBottom="3dp"
-        android:background="@android:color/black" />
-
+    <TextView
+        android:id="@+id/expText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="EXP: 421"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="16dp"
+        android:textSize="16sp"
+        android:textColor="#000000" />
     <TextView
         android:id="@+id/Text"
         android:layout_width="wrap_content"

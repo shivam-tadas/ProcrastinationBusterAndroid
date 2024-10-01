@@ -18,7 +18,6 @@ public class HomepageActivity extends AppCompatActivity {
     private TextView expText;
     private ImageView timeSpentChart;
     private ImageButton imageButton1;
-    private ImageButton imageButton2;
     private ImageButton imageButton3;
 
     @Override
@@ -35,7 +34,6 @@ public class HomepageActivity extends AppCompatActivity {
         expText = findViewById(R.id.expText);
         timeSpentChart = findViewById(R.id.timeSpentChart);
         imageButton1 = findViewById(R.id.imageButton1);
-        imageButton2 = findViewById(R.id.imageButton2);
         imageButton3 = findViewById(R.id.imageButton3);
 
         // Set up button click listeners
@@ -50,28 +48,24 @@ public class HomepageActivity extends AppCompatActivity {
         profileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Handle profile button click
+                Intent intent = new Intent(HomepageActivity.this, ProfileActivity.class);
+                startActivity(intent);
             }
         });
 
         imageButton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Handle TODO button click
-            }
-        });
-
-        imageButton2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Handle Home button click
+                Intent intent = new Intent(HomepageActivity.this, TodosActivity.class);
+                startActivity(intent);
             }
         });
 
         imageButton3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Handle Reward button click
+                Intent intent = new Intent(HomepageActivity.this, RewardsActivity.class);
+                startActivity(intent);
             }
         });
     }

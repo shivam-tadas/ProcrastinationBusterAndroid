@@ -1,14 +1,12 @@
 package com.example.miniproject5thsem;
 
 import android.os.Bundle;
-import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
 
-public class ProfileActivity extends AppCompatActivity {
-
+public class StatisticsActivity extends AppCompatActivity {
     private TextView greetingText;
-    private ImageView avatarImage;
     private TextView levelText;
     private TextView expText;
     private TextView totalTasksText;
@@ -18,20 +16,18 @@ public class ProfileActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
+        setContentView(R.layout.activity_statistics);
 
         // Initialize views
         greetingText = findViewById(R.id.greetingText);
-        avatarImage = findViewById(R.id.avatarImage);
         levelText = findViewById(R.id.levelText);
         expText = findViewById(R.id.expText);
         totalTasksText = findViewById(R.id.Text);
         currentPendingTasksText = findViewById(R.id.Text1);
         dateJoinedText = findViewById(R.id.Text2);
 
-        greetingText.setText("Profile");
-        levelText.setText("Level 2");
-        expText.setText("EXP 421");
+        levelText.setText("Level: 2");
+        expText.setText("EXP: 421");
         totalTasksText.setText("Total tasks completed: 15");
         currentPendingTasksText.setText("Current pending tasks: 3");
         dateJoinedText.setText("Date joined: January 1, 2023");

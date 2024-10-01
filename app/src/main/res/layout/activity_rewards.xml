@@ -5,6 +5,7 @@
     android:orientation="vertical"
     android:padding="16dp"
     android:background="#FAF9F6">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -23,7 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:text="Your Rewards                        "
+            android:text="Your Rewards"
             android:textSize="25sp"
             android:textColor="#000000"/>
         <ImageButton
@@ -34,6 +35,7 @@
             android:src="@drawable/profileicon"
             android:padding="8dp" />
         </LinearLayout>
+
        <View
        android:layout_width="400dp"
        android:layout_height="1dp"
@@ -48,31 +50,32 @@
         android:layout_gravity="center"
         android:contentDescription="User avatar"
         android:src="@drawable/prize" />
-<LinearLayout
-android:layout_width="371dp"
-android:layout_height="96dp"
-android:gravity="center"
-android:orientation="horizontal">
-<ImageButton
-    android:id="@+id/imageButton1"
-    android:layout_width="50dp"
-    android:layout_height="50dp"
-    android:layout_margin="20dp"
-    android:background="?attr/selectableItemBackgroundBorderless"
-    android:src="@drawable/todo" />
-<ImageButton
-    android:id="@+id/imageButton2"
-    android:layout_width="40dp"
-    android:layout_height="40dp"
-    android:layout_margin="20dp"
-    android:background="?attr/selectableItemBackgroundBorderless"
-    android:src="@drawable/home" />
-<ImageButton
-    android:id="@+id/imageButton3"
-    android:layout_width="50dp"
-    android:layout_height="50dp"
-    android:layout_margin="8dp"
-    android:background="?attr/selectableItemBackgroundBorderless"
-    android:src="@drawable/reward1" />
-</LinearLayout>
+
+    <LinearLayout
+    android:layout_width="371dp"
+    android:layout_height="96dp"
+    android:gravity="center"
+    android:orientation="horizontal">
+    <ImageButton
+        android:id="@+id/imageButton1"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_margin="20dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@drawable/todo" />
+    <ImageButton
+        android:id="@+id/imageButton2"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_margin="20dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@drawable/home" />
+    <ImageButton
+        android:id="@+id/imageButton3"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_margin="8dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@drawable/reward1" />
+    </LinearLayout>
 </LinearLayout>
