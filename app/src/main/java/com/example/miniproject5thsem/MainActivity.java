@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.DialogInterface;
 import android.app.AlertDialog;
@@ -31,7 +30,6 @@ public class MainActivity extends AppCompatActivity {
                 // Add logic for the login button here (e.g., go to login screen)
                 Intent intent = new Intent(MainActivity.this, LoginActivity.class);
                 startActivity(intent);
-                finish();
             }
         });
 
@@ -41,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
                 // Add logic for the signup button here (e.g., go to signup screen)
                 Intent intent = new Intent(MainActivity.this, SignupActivity.class);
                 startActivity(intent);
-                finish();
             }
         });
 

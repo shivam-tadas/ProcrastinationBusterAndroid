@@ -6,7 +6,6 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class StatisticsActivity extends AppCompatActivity {
-    private TextView greetingText;
     private TextView levelText;
     private TextView expText;
     private TextView totalTasksText;
@@ -18,8 +17,6 @@ public class StatisticsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_statistics);
 
-        // Initialize views
-        greetingText = findViewById(R.id.greetingText);
         levelText = findViewById(R.id.levelText);
         expText = findViewById(R.id.expText);
         totalTasksText = findViewById(R.id.Text);
