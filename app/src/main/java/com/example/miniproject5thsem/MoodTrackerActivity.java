@@ -19,9 +19,8 @@ public class MoodTrackerActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_moodtracker); // Change to your layout file name
+        setContentView(R.layout.activity_moodtracker);
 
-        // Initialize views
         greetingText = findViewById(R.id.greetingText);
         moodText = findViewById(R.id.mood);
         noteText = findViewById(R.id.note);
