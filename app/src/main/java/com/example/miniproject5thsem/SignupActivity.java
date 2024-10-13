@@ -2,6 +2,7 @@ package com.example.miniproject5thsem;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -10,6 +11,19 @@ import android.widget.Toast;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class SignupActivity extends AppCompatActivity {
 
@@ -54,13 +68,59 @@ public class SignupActivity extends AppCompatActivity {
                 } else if (!password.equals(confirmPassword)) {
                     Toast.makeText(SignupActivity.this, "Passwords do not match", Toast.LENGTH_SHORT).show();
                 } else {
-                    // If everything is valid, proceed with sign-up
-                    // For now, display a success message. Add actual registration logic here.
-                    Toast.makeText(SignupActivity.this, "Signing up...", Toast.LENGTH_SHORT).show();
+                    // Proceed with the signup by sending data to the server
+                    String url = "http://10.0.2.2/registration.php";
 
-                    Intent intent = new Intent(SignupActivity.this, HomepageActivity.class);
-                    startActivity(intent);
-                    finish();
+                    // Create a Volley request queue
+                    RequestQueue requestQueue = Volley.newRequestQueue(SignupActivity.this);
+
+                    // Create a POST request
+                    StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                            new Response.Listener<String>() {
+                                @Override
+                                public void onResponse(String response) {
+                                    try {
+                                        JSONObject jsonObject = new JSONObject(response);
+                                        String status = jsonObject.getString("status");
+
+                                        if (status.equals("success")) {
+                                            Toast.makeText(SignupActivity.this, "Registration successful, please log in.", Toast.LENGTH_SHORT).show();
+                                            Intent intent = new Intent(SignupActivity.this, MainActivity.class);
+                                            startActivity(intent);
+                                            finish();
+                                        } else if (status.equals("user_exists")) {
+                                            Toast.makeText(SignupActivity.this, "User already exists", Toast.LENGTH_SHORT).show();
+                                        } else {
+                                            Toast.makeText(SignupActivity.this, "Error in registration", Toast.LENGTH_SHORT).show();
+                                        }
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                        Toast.makeText(SignupActivity.this, "JSON parsing error", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            },
+                            new Response.ErrorListener() {
+                                @Override
+                                public void onErrorResponse(VolleyError error) {
+                                    String errorMessage = "Volley error: " + error.getMessage();
+                                    // Log the error in Logcat
+                                    Log.e("SignupError", errorMessage);
+                                    Toast.makeText(SignupActivity.this, errorMessage, Toast.LENGTH_LONG).show();
+                                }
+                            }) {
+                        @Override
+                        protected Map<String, String> getParams() {
+                            // Pass user data to the server
+                            Map<String, String> params = new HashMap<>();
+                            params.put("username", username);
+                            params.put("password", password);
+                            params.put("email", email);
+                            return params;
+                        }
+                    };
+
+                    // Add the request to the RequestQueue
+                    requestQueue.add(postRequest);
                 }
             }
         });

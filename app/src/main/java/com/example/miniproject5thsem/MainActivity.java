@@ -8,6 +8,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.DialogInterface;
 import android.app.AlertDialog;
+import android.content.SharedPreferences;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,6 +20,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        SharedPreferences sharedPreferences = getSharedPreferences("UserSession", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        boolean isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false);
+        
+        if (isLoggedIn) {
+            Intent intent = new Intent(MainActivity.this, HomepageActivity.class);
+            startActivity(intent);
+            finish();
+        }
 
         loginButton = findViewById(R.id.loginButton);
         signupButton = findViewById(R.id.signupButton);
