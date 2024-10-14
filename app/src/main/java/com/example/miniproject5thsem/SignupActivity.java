@@ -47,9 +47,8 @@ public class SignupActivity extends AppCompatActivity {
         signUpButton = findViewById(R.id.signUpButton);
         backButton = findViewById(R.id.backButton);
 
-        SharedPreferences sharedPreferences = getSharedPreferences("UserSession", MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        boolean isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false);
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override

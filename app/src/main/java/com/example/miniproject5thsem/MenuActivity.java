@@ -1,5 +1,6 @@
 package com.example.miniproject5thsem;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -13,7 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MenuActivity extends AppCompatActivity {
 
-    private Button button1, button2, button3, button4, button5, button6, button7, button8;
+    private Button button1, button2, button3, button4, button5, button6, button7, button8, button9;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +30,7 @@ public class MenuActivity extends AppCompatActivity {
         button6 = findViewById(R.id.button6);
         button7 = findViewById(R.id.button7);
         button8 = findViewById(R.id.button8);
+        button9 = findViewById(R.id.button9);
 
         // Set up button click listeners
         button1.setOnClickListener(new View.OnClickListener() {
@@ -97,6 +99,21 @@ public class MenuActivity extends AppCompatActivity {
                 showFeedbackDialog();
             }
         });
+
+        button9.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferences sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putBoolean("isLoggedIn", false);
+                editor.apply();
+
+                Intent intent = new Intent(MenuActivity.this, MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 
     private void showFeedbackDialog() {
@@ -123,18 +140,16 @@ public class MenuActivity extends AppCompatActivity {
         dialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                // Dismiss the dialog
                 dialog.dismiss();
             }
         });
 
-        // Show the dialog
         AlertDialog dialog = dialogBuilder.create();
         dialog.show();
     }
     private void sendFeedbackEmail(String title, String body) {
         Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
-        emailIntent.setData(Uri.parse("mailto:")); // Only email apps should handle this
+        emailIntent.setData(Uri.parse("mailto:"));
         emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{"shivam.tadas@outlook.in"});
         emailIntent.putExtra(Intent.EXTRA_SUBJECT, title);
         emailIntent.putExtra(Intent.EXTRA_TEXT, body);

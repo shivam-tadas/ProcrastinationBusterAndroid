@@ -133,7 +133,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         };
 
-        // Add the request to the RequestQueue
         requestQueue.add(postRequest);
     }
 }
