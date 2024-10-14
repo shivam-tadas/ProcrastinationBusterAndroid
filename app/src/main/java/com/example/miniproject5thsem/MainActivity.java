@@ -19,17 +19,18 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
         SharedPreferences sharedPreferences = getSharedPreferences("UserSession", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         boolean isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false);
-        
+
         if (isLoggedIn) {
             Intent intent = new Intent(MainActivity.this, HomepageActivity.class);
             startActivity(intent);
             finish();
         }
+
+        setContentView(R.layout.activity_main);
 
         loginButton = findViewById(R.id.loginButton);
         signupButton = findViewById(R.id.signupButton);

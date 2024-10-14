@@ -1,6 +1,7 @@
 package com.example.miniproject5thsem;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -46,6 +47,10 @@ public class SignupActivity extends AppCompatActivity {
         signUpButton = findViewById(R.id.signUpButton);
         backButton = findViewById(R.id.backButton);
 
+        SharedPreferences sharedPreferences = getSharedPreferences("UserSession", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        boolean isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false);
+
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -84,8 +89,10 @@ public class SignupActivity extends AppCompatActivity {
                                         String status = jsonObject.getString("status");
 
                                         if (status.equals("success")) {
-                                            Toast.makeText(SignupActivity.this, "Registration successful, please log in.", Toast.LENGTH_SHORT).show();
-                                            Intent intent = new Intent(SignupActivity.this, MainActivity.class);
+                                            Toast.makeText(SignupActivity.this, "Registration successful.", Toast.LENGTH_SHORT).show();
+                                            Intent intent = new Intent(SignupActivity.this, HomepageActivity.class);
+                                            editor.putBoolean("isLoggedIn", true);  // Save login status
+                                            editor.apply();
                                             startActivity(intent);
                                             finish();
                                         } else if (status.equals("user_exists")) {
