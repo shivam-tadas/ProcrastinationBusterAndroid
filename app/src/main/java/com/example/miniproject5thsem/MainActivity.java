@@ -65,7 +65,9 @@ public class MainActivity extends AppCompatActivity {
     private void showHelpDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
         builder.setTitle("Help");
-        builder.setMessage("If you already have an account, you can log in using your credentials. If you're new here, sign up to create a new account.");
+        builder.setMessage(
+                "If you already have an account, you can log in using your credentials. If you're new here, sign up to create a new account. In case you have forgotten your password, email us for help."
+        );
         builder.setPositiveButton("Close", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {

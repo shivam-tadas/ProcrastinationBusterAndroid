@@ -90,6 +90,7 @@ public class SignupActivity extends AppCompatActivity {
                                         if (status.equals("success")) {
                                             Toast.makeText(SignupActivity.this, "Registration successful.", Toast.LENGTH_SHORT).show();
                                             Intent intent = new Intent(SignupActivity.this, HomepageActivity.class);
+                                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                             editor.putBoolean("isLoggedIn", true);  // Save login status
                                             editor.apply();
                                             startActivity(intent);

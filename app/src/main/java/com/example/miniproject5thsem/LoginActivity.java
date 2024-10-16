@@ -31,7 +31,6 @@ public class LoginActivity extends AppCompatActivity {
     private EditText usernameInput;
     private EditText passwordInput;
     private Button loginButton;
-    private TextView forgotPassword;
     private TextView backButton;
 
     @Override
@@ -42,7 +41,6 @@ public class LoginActivity extends AppCompatActivity {
         usernameInput = findViewById(R.id.usernameInput);
         passwordInput = findViewById(R.id.passwordInput);
         loginButton = findViewById(R.id.loginButton);
-        forgotPassword = findViewById(R.id.forgotPassword);
         backButton = findViewById(R.id.backButton);
 
         backButton.setOnClickListener(new View.OnClickListener() {
@@ -65,14 +63,6 @@ public class LoginActivity extends AppCompatActivity {
                 } else {
                     loginUser(username, password);  // Call the login method
                 }
-            }
-        });
-
-        forgotPassword.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(LoginActivity.this, ForgotPasswordActivity.class);
-                startActivity(intent);
             }
         });
 
@@ -105,6 +95,7 @@ public class LoginActivity extends AppCompatActivity {
                                 editor.apply();
 
                                 Intent intent = new Intent(LoginActivity.this, HomepageActivity.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 startActivity(intent);
                                 finish();  // Finish the current activity so the user cannot go back to it
                             } else if (status.equals("invalid_credentials")) {

@@ -8,7 +8,6 @@
     android:padding="16dp"
     android:background="#f9f9f9">
 
-    <!-- Back button -->
     <TextView
         android:id="@+id/backButton"
         android:layout_width="wrap_content"
@@ -22,7 +21,6 @@
         android:clickable="true"
         android:focusable="true" />
 
-    <!-- Welcome back text -->
     <TextView
         android:id="@+id/welcomeText"
         android:layout_width="wrap_content"
@@ -33,7 +31,6 @@
         android:layout_marginBottom="40dp"
         android:gravity="center" />
 
-    <!-- Username input field -->
     <EditText
         android:id="@+id/usernameInput"
         android:layout_width="match_parent"
@@ -46,7 +43,6 @@
         android:textColor="#000000"
         android:textColorHint="#888888" />
 
-    <!-- Password input field -->
     <EditText
         android:id="@+id/passwordInput"
         android:layout_width="match_parent"
@@ -59,7 +55,6 @@
         android:textColor="#000000"
         android:textColorHint="#888888" />
 
-    <!-- Log In button -->
     <Button
         android:id="@+id/loginButton"
         android:layout_width="wrap_content"
@@ -71,18 +66,5 @@
         android:padding="10dp"
         android:background="@drawable/outline_button"
         android:layout_marginBottom="20dp" />
-
-    <!-- Forgot password link -->
-    <TextView
-        android:id="@+id/forgotPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="I forgot my password"
-        android:textSize="14sp"
-        android:textColor="#007FFF"
-        android:layout_marginTop="20dp"
-        android:gravity="center"
-        android:clickable="true"
-        android:focusable="true" />
 
 </LinearLayout>
