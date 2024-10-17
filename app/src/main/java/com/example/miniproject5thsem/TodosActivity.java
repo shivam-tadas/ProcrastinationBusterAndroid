@@ -8,11 +8,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import android.app.AlertDialog;
+import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.ArrayAdapter;
 
 public class TodosActivity extends AppCompatActivity {
-
     private ImageButton menuButton;
-    private ImageButton profileButton;
     private ImageButton homeButton;
     private ImageButton rewardsButton;
     private ImageButton addButton;
@@ -22,16 +24,12 @@ public class TodosActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_todos);
 
-        // Initialize views
         menuButton = findViewById(R.id.menuButton);
-        profileButton = findViewById(R.id.profileButton);
         homeButton = findViewById(R.id.imageButton2);
         rewardsButton = findViewById(R.id.imageButton3);
         addButton = findViewById(R.id.imageButton4);
 
-        // Set click listeners
         menuButton.setOnClickListener(v -> openMenu());
-        profileButton.setOnClickListener(v -> openProfile());
         homeButton.setOnClickListener(v -> openHome());
         rewardsButton.setOnClickListener(v -> openRewards());
         addButton.setOnClickListener(v -> addNewTask());
@@ -39,11 +37,6 @@ public class TodosActivity extends AppCompatActivity {
 
     private void openMenu() {
         Intent intent = new Intent(TodosActivity.this, MenuActivity.class);
-        startActivity(intent);
-    }
-
-    private void openProfile() {
-        Intent intent = new Intent(TodosActivity.this, ProfileActivity.class);
         startActivity(intent);
     }
 
@@ -57,6 +50,31 @@ public class TodosActivity extends AppCompatActivity {
     }
 
     private void addNewTask() {
-        // TODO: Implement new task addition logic
+        // Inflate the dialog with the custom layout
+        View dialogView = getLayoutInflater().inflate(R.layout.dialog_add_task, null);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setView(dialogView);
+        builder.setTitle("Add New Task");
+
+        EditText taskNameEditText = dialogView.findViewById(R.id.taskNameEditText);
+        Spinner prioritySpinner = dialogView.findViewById(R.id.prioritySpinner);
+
+        builder.setPositiveButton("Add", (dialog, which) -> {
+            String taskName = taskNameEditText.getText().toString().trim();
+            String priority = prioritySpinner.getSelectedItem().toString();
+
+            if (!taskName.isEmpty()) {
+                // TODO: Save task to database and update UI
+                Toast.makeText(TodosActivity.this, "Task added: " + taskName + " (" + priority + ")", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(TodosActivity.this, "Please enter a task name", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        builder.setNegativeButton("Cancel", null);
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 }

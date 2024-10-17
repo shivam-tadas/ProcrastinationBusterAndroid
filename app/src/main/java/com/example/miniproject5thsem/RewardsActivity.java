@@ -10,7 +10,6 @@ import androidx.appcompat.app.AppCompatActivity;
 public class RewardsActivity extends AppCompatActivity {
 
     private ImageButton menuButton;
-    private ImageButton profileButton;
     private ImageView avatarImage;
     private ImageButton todoButton;
     private ImageButton homeButton;
@@ -20,16 +19,12 @@ public class RewardsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rewards);
 
-        // Initialize views
         menuButton = findViewById(R.id.menuButton);
-        profileButton = findViewById(R.id.profileButton);
         avatarImage = findViewById(R.id.avatarImage);
         todoButton = findViewById(R.id.imageButton1);
         homeButton = findViewById(R.id.imageButton2);
 
-        // Set click listeners
         menuButton.setOnClickListener(v -> openMenu());
-        profileButton.setOnClickListener(v -> openProfile());
         todoButton.setOnClickListener(v -> openTodoList());
         homeButton.setOnClickListener(v -> openHome());
     }

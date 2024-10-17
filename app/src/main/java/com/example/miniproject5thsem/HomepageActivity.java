@@ -1,6 +1,7 @@
 package com.example.miniproject5thsem; // Change to your package name
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -23,7 +24,9 @@ public class HomepageActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_homepage); // Change to your layout file name
+        setContentView(R.layout.activity_homepage);
+
+        SharedPreferences sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE);
 
         // Initialize views
         greetingText = findViewById(R.id.greetingText);
@@ -36,7 +39,8 @@ public class HomepageActivity extends AppCompatActivity {
         imageButton1 = findViewById(R.id.imageButton1);
         imageButton3 = findViewById(R.id.imageButton3);
 
-        // Set up button click listeners
+        String username = sharedPreferences.getString("username", "user");
+        greetingText.setText(username + "'s Dashboard     ");
         menuButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

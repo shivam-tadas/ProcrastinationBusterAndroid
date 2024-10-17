@@ -21,7 +21,6 @@ public class MenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu); // Change to your layout file name
 
-        // Initialize buttons
         button1 = findViewById(R.id.button1);
         button2 = findViewById(R.id.button2);
         button3 = findViewById(R.id.button3);
@@ -32,12 +31,12 @@ public class MenuActivity extends AppCompatActivity {
         button8 = findViewById(R.id.button8);
         button9 = findViewById(R.id.button9);
 
-        // Set up button click listeners
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MenuActivity.this, StatisticsActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -46,6 +45,7 @@ public class MenuActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MenuActivity.this, HistoryActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -54,6 +54,7 @@ public class MenuActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MenuActivity.this, ProfileActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -62,6 +63,7 @@ public class MenuActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MenuActivity.this, MoodTrackerActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -70,6 +72,7 @@ public class MenuActivity extends AppCompatActivity {
             public void onClick(View v) {
 //                Intent intent = new Intent(MenuActivity.this, JoinGroupActivity.class);
 //                startActivity(intent);
+                // finish();
             }
         });
 
@@ -78,6 +81,7 @@ public class MenuActivity extends AppCompatActivity {
             public void onClick(View v) {
 //                Intent intent = new Intent(MenuActivity.this, CreateGroupActivity.class);
 //                startActivity(intent);
+                // finish();
             }
         });
 
@@ -85,11 +89,12 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
-                    Uri uri = Uri.parse("https://www.github.com/");
+                    Uri uri = Uri.parse("https://www.github.com/shivam-tadas/MiniProject5thSem");
                     startActivity(new Intent(Intent.ACTION_VIEW, uri));
                 } catch (Exception e) {
                     Toast.makeText(MenuActivity.this, "Error opening webpage", Toast.LENGTH_SHORT).show();
                 }
+                finish();
             }
         });
 

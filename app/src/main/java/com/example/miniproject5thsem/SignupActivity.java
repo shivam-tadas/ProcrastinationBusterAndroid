@@ -47,9 +47,6 @@ public class SignupActivity extends AppCompatActivity {
         signUpButton = findViewById(R.id.signUpButton);
         backButton = findViewById(R.id.backButton);
 
-        SharedPreferences sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -89,9 +86,12 @@ public class SignupActivity extends AppCompatActivity {
 
                                         if (status.equals("success")) {
                                             Toast.makeText(SignupActivity.this, "Registration successful.", Toast.LENGTH_SHORT).show();
+                                            SharedPreferences sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE);
+                                            SharedPreferences.Editor editor = sharedPreferences.edit();
                                             Intent intent = new Intent(SignupActivity.this, HomepageActivity.class);
                                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                             editor.putBoolean("isLoggedIn", true);  // Save login status
+                                            editor.putString("username", username);
                                             editor.apply();
                                             startActivity(intent);
                                             finish();

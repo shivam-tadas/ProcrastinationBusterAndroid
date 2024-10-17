@@ -29,14 +29,6 @@
             android:textSize="27sp"
             android:textColor="#000000" />
 
-        <ImageButton
-            android:id="@+id/profileButton"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:contentDescription="Profile"
-            android:src="@drawable/profileicon"
-            android:padding="8dp" />
-
     </LinearLayout>
 
     <View
