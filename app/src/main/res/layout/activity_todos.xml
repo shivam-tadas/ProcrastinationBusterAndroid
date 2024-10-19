@@ -47,6 +47,14 @@
         android:src="@drawable/plus1" />
 
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:id="@+id/tasksLayout" >
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="376dp"
         android:layout_height="206dp"
         android:gravity="center"
