@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -136,31 +137,32 @@ public class TodosActivity extends AppCompatActivity {
         String username = sharedPreferences.getString("username", "default_user");
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        try {
-                            // Parse response to JSONArray
-                            JSONArray tasksArray = new JSONArray(response);
-                            displayTasks(tasksArray);
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                            Toast.makeText(TodosActivity.this, "Error parsing response", Toast.LENGTH_SHORT).show();
-                        }
+                response -> {
+                    try {
+                        JSONArray tasksArray = new JSONArray(response);
+                        displayTasks(tasksArray);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        Toast.makeText(TodosActivity.this, "Error parsing response", Toast.LENGTH_SHORT).show();
                     }
                 },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(TodosActivity.this, "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                }) {
+                error -> Toast.makeText(TodosActivity.this, "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show()) {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
-                params.put("username", username); // Sending username
+                SharedPreferences sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE);
+                String username = sharedPreferences.getString("username", "default_user");
+
+                // Ensure this value is not null or empty
+                if (username != null && !username.isEmpty()) {
+                    params.put("username", username);
+                } else {
+                    Log.e("FetchTasksError", "Username is missing in SharedPreferences");
+                }
+
                 return params;
             }
+
         };
         requestQueue.add(stringRequest);
     }
@@ -172,14 +174,11 @@ public class TodosActivity extends AppCompatActivity {
         try {
             for (int i = 0; i < tasks.length(); i++) {
                 JSONObject task = tasks.getJSONObject(i);
-                if (task.has("error")) {
-                    Toast.makeText(TodosActivity.this, task.getString("error"), Toast.LENGTH_SHORT).show();
-                    return;
-                }
 
+                String taskId = task.getString("task_id");  // Assuming task_id is returned from server
                 String taskName = task.getString("task_name");
                 String priority = task.getString("priority");
-                String creationTime = task.getString("creation_time"); // Get creation time
+                String creationTime = task.getString("creation_time");
 
                 LinearLayout taskLayout = new LinearLayout(this);
                 taskLayout.setOrientation(LinearLayout.VERTICAL);
@@ -191,9 +190,18 @@ public class TodosActivity extends AppCompatActivity {
 
                 TextView creationTimeText = new TextView(this);
                 creationTimeText.setText("Created on: " + creationTime);
-                creationTimeText.setTextSize(16); // Smaller font for the creation time
-                creationTimeText.setTextColor(getResources().getColor(R.color.gray)); // Gray color for timestamp
+                creationTimeText.setTextSize(16);
+                creationTimeText.setTextColor(getResources().getColor(R.color.gray));
                 taskLayout.addView(creationTimeText);
+
+                // Add 'Mark as Done' button
+                Button doneButton = new Button(this);
+                //doneButton.setImageResource(R.drawable.ic_done); // Assuming you have an icon for done
+                doneButton.setText("Finished");
+                doneButton.setOnClickListener(v -> {
+                    markTaskAsDone(taskId, taskLayout);  // Pass task ID and the layout to remove
+                });
+                taskLayout.addView(doneButton);
 
                 tasksLayout.addView(taskLayout);
             }
@@ -201,5 +209,29 @@ public class TodosActivity extends AppCompatActivity {
             e.printStackTrace();
             Toast.makeText(TodosActivity.this, "Error displaying tasks", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private void markTaskAsDone(String taskId, LinearLayout taskLayout) {
+        String url = "http://10.0.2.2/mark_task_done.php";  // Backend endpoint for marking task as done
+        RequestQueue requestQueue = Volley.newRequestQueue(TodosActivity.this);
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                response -> {
+                    // Handle server response
+                    Toast.makeText(TodosActivity.this, "Task marked as done and deleted!", Toast.LENGTH_SHORT).show();
+                    // Remove task from UI
+                    LinearLayout tasksLayout = findViewById(R.id.tasksLayout);
+                    tasksLayout.removeView(taskLayout);  // Remove the task's layout after done
+                },
+                error -> Toast.makeText(TodosActivity.this, "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show()) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put("task_id", taskId);  // Only send task ID to mark as done
+                return params;
+            }
+        };
+
+        requestQueue.add(stringRequest);
     }
 }
