@@ -170,6 +170,8 @@ public class TodosActivity extends AppCompatActivity {
     private void displayTasks(JSONArray tasks) {
         LinearLayout tasksLayout = findViewById(R.id.tasksLayout);
         tasksLayout.removeAllViews();
+        SharedPreferences sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE);
+        String username = sharedPreferences.getString("username", "user");
 
         try {
             for (int i = 0; i < tasks.length(); i++) {
@@ -194,15 +196,13 @@ public class TodosActivity extends AppCompatActivity {
                 creationTimeText.setTextColor(getResources().getColor(R.color.gray));
                 taskLayout.addView(creationTimeText);
 
-                // Add 'Mark as Done' button
                 Button doneButton = new Button(this);
-                //doneButton.setImageResource(R.drawable.ic_done); // Assuming you have an icon for done
                 doneButton.setText("Finished");
                 doneButton.setOnClickListener(v -> {
-                    markTaskAsDone(taskId, taskLayout);  // Pass task ID and the layout to remove
+                    markTaskAsDone(taskId, taskLayout);     // Pass task ID and the layout to remove
+                    addRewardPoints(username, priority);    // Add exp for task completion
                 });
                 taskLayout.addView(doneButton);
-
                 tasksLayout.addView(taskLayout);
             }
         } catch (JSONException e) {
@@ -212,7 +212,7 @@ public class TodosActivity extends AppCompatActivity {
     }
 
     private void markTaskAsDone(String taskId, LinearLayout taskLayout) {
-        String url = "http://10.0.2.2/mark_task_done.php";  // Backend endpoint for marking task as done
+        String url = "http://10.0.2.2/mark_task_done.php";
         RequestQueue requestQueue = Volley.newRequestQueue(TodosActivity.this);
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
@@ -232,6 +232,28 @@ public class TodosActivity extends AppCompatActivity {
             }
         };
 
+        requestQueue.add(stringRequest);
+    }
+
+    private void addRewardPoints(String username, String priority) {
+        String url = "http://10.0.2.2/add_reward_points.php";
+        RequestQueue requestQueue = Volley.newRequestQueue(TodosActivity.this);
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                response -> {
+                    Toast.makeText(TodosActivity.this, "Reward points updated!", Toast.LENGTH_SHORT).show();
+                },
+                error -> {
+                    Toast.makeText(TodosActivity.this, "Error updating reward points: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put("username", username);
+                params.put("priority", priority);  // Send task priority to backend
+                return params;
+            }
+        };
         requestQueue.add(stringRequest);
     }
 }
